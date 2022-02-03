@@ -4,19 +4,13 @@
 name: Kernel CI
 
 on:
-  workflow_dispatch:
-    inputs:
-      repo:
-        description: 'Kernel source link'
-        required: true
-      branch:
-        description: 'Kernel source branch'
-        required: true       
+  watch:
+    types: [started]     
 
 env:
   TZ: Asia/Kolkata
-  REPO: ${{ github.event.inputs.repo }}
-  BRANCH: ${{ github.event.inputs.branch }}
+  REPO: https://github.com/sarthakroy2002/kernel_realme_RMX2020
+  BRANCH: Q
 
 jobs:
   kernel-build:
@@ -39,8 +33,8 @@ jobs:
           cd kernel
           bash build.sh
 
-       - name: Upload the kernel to Git Artifacts
-         uses: actions/upload-artifact@v2
+      - name: Upload the kernel to Git Artifacts
+        uses: actions/upload-artifact@v2
          with:
           name: kernelzip
           path: kernel/Any*/*.zip
