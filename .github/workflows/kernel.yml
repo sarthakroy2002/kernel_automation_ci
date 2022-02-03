@@ -27,14 +27,8 @@ jobs:
           sudo apt update
           sudo apt install -y bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev python tmate ssh          
 
-      - name: Run a multi-line script
+      - name: Lets compile
         run: |
           git clone $REPO -b $BRANCH kernel 
           cd kernel
           bash build.sh
-
-      - name: Upload the kernel to Git Artifacts
-        uses: actions/upload-artifact@v2
-         with:
-          name: kernelzip
-          path: kernel/Any*/*.zip
