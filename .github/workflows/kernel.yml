@@ -4,13 +4,19 @@
 name: Kernel CI
 
 on:
-  watch:
-    types: [started]     
+  workflow_dispatch:
+    inputs:
+      repo:
+          description: 'Kernel source link'
+          required: true
+      branch:
+          description: 'Kernel source branch'
+          required: true   
 
 env:
   TZ: Asia/Kolkata
-  REPO: https://github.com/sarthakroy2002/kernel_realme_RMX2020
-  BRANCH: Q
+  REPO: ${{ github.event.inputs.repo }}
+  BRANCH: ${{ github.event.inputs.branch }}
 
 jobs:
   kernel-build:
