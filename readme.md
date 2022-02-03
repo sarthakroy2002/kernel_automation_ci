@@ -9,3 +9,4 @@
 [techyminati](https://github.com/techyminati) For His Great Help With Scripts
 
 ## License
+ [GPLv3](https://github.com/sarthakroy2002/kernel_automation_ci/blob/main/LICENSE)
