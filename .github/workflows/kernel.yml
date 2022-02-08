@@ -17,6 +17,8 @@ env:
   TZ: Asia/Kolkata
   REPO: ${{ github.event.inputs.repo }}
   BRANCH: ${{ github.event.inputs.branch }}
+  token: ${{ secrets.TOKEN }}
+  chat_id: ${{ secrets.CHAT_ID }}
 
 jobs:
   kernel-build:
