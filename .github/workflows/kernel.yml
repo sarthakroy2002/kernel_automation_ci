@@ -41,5 +41,5 @@ jobs:
         run: |
           git clone $REPO -b $BRANCH kernel 
           cd kernel
-          wget https://raw.githubusercontent.com/sarthakroy2002/my_scripts/main/Kernel/C3_build_script.sh
+          wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/C3_build_script.sh
           bash C3_build_script.sh
