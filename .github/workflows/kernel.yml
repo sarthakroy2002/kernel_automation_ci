@@ -6,6 +6,9 @@ name: Kernel CI
 on:
   workflow_dispatch:
     inputs:
+      device:
+          description: 'device codename (RMX2020/RM6785)'
+          required: true
       repo:
           description: 'Kernel source link'
           required: true
@@ -15,6 +18,7 @@ on:
 
 env:
   TZ: Asia/Kolkata
+  DEVICE: ${{ github.event.inputs.device }}
   REPO: ${{ github.event.inputs.repo }}
   BRANCH: ${{ github.event.inputs.branch }}
   token: ${{ secrets.TOKEN }}
@@ -41,5 +45,11 @@ jobs:
         run: |
           git clone $REPO -b $BRANCH kernel 
           cd kernel
-          wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel%20Scripts/C3_build_script.sh
-          bash C3_build_script.sh
+          if [ "${DEVICE}" = "RMX2020" ]; then
+            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel%20Scripts/C3_build_script.sh
+            bash C3_build_script.sh
+          else
+            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel%20Scripts/wasabi_build_script.sh
+            bash wasabi_build_script.sh
+          fi
+
