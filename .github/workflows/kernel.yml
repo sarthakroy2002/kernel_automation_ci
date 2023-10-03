@@ -46,10 +46,10 @@ jobs:
           git clone $REPO -b $BRANCH kernel 
           cd kernel
           if [ "${DEVICE}" = "RMX2020" ]; then
-            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel%20Scripts/C3_build_script.sh
+            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/C3_build_script.sh
             bash C3_build_script.sh
           else
-            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel%20Scripts/wasabi_build_script.sh
+            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/wasabi_build_script.sh
             bash wasabi_build_script.sh
           fi
 
