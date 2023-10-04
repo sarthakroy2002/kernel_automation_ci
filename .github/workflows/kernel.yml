@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       device:
-          description: 'device codename (RMX2020/RM6785)'
+          description: 'device codename (RMX2020/RM6785/r5x)'
           required: true
       repo:
           description: 'Kernel source link'
@@ -48,8 +48,13 @@ jobs:
           if [ "${DEVICE}" = "RMX2020" ]; then
             wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/C3_build_script.sh
             bash C3_build_script.sh
-          else
+          elif [ "${DEVICE}" = "RM6785" ]; then
             wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/wasabi_build_script.sh
             bash wasabi_build_script.sh
+          elif [ "${DEVICE}" = "r5x" ]; then
+            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/r5x_build_script.sh
+            bash r5x_build_script.sh
+          else
+            echo "Invalid device '${DEVICE}'"
+          exit 1
           fi
-
