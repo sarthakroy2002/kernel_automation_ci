@@ -14,13 +14,17 @@ on:
           required: true
       branch:
           description: 'Kernel source branch'
-          required: true   
+          required: true
+      gki:
+          description: 'Need GKI build? (true/false)'
+          required: false 
 
 env:
   TZ: Asia/Kolkata
   DEVICE: ${{ github.event.inputs.device }}
   REPO: ${{ github.event.inputs.repo }}
   BRANCH: ${{ github.event.inputs.branch }}
+  GKI: ${{ github.event.inputs.gki }}
   token: ${{ secrets.TOKEN }}
   chat_id: ${{ secrets.CHAT_ID }}
 
@@ -49,6 +53,11 @@ jobs:
             wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/C3_build_script.sh
             bash C3_build_script.sh
           else
-            wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/cancunf_build_script.sh
-            bash cancunf_build_script.sh
+            if [ "${GKI}" = "true" ]; then
+              wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/cancunf_gki_build_script.sh
+              bash cancunf_gki_build_script.sh
+            else
+              wget https://raw.githubusercontent.com/sarthakroy2002/Scripts/main/Kernel/cancunf_build_script.sh
+              bash cancunf_build_script.sh
+            fi
           fi
